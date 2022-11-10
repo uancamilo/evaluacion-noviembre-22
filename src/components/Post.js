@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 // El componente Post no tiene componentes hijos.
 // ESTADO: Post debe tener un número para almacenar la cantidad de likes, la misma se la defina el padre a la hora de crearlo.
 // MÉTODOS: Post debe tener un método para manejar el click de su boton, el cual debe:
@@ -12,11 +12,26 @@ import React from 'react'
 //    button       (este boton debe permitir sumar likes)
 //    h5    (este h5 debe mostrar la cantidad de likes, pero si la misma es mayor a 10 debe decir "Más de 10 likes")
 
-export default function Post() {
+export default function Post(props) {
+	console.log(props);
 
-  return (
-    <div className='posteo'>
-      {/* maquetar Post aquí */}
-    </div>
-  )
+	const [count, setCount] = React.useState(0);
+
+	function clickTotales() {
+		props.clickTotales(props.item);
+		setCount(count + 1);
+	}
+
+	
+
+	return (
+		<div className="posteo">
+			<h3>{props.item.titulo}</h3>
+			<p>{props.item.texto}</p>
+			<button onClick={ clickTotales }>Like</button>
+			<h5>
+				{count}
+			</h5>
+		</div>
+	);
 }
